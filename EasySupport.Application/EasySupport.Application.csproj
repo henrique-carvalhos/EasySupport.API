@@ -16,4 +16,11 @@
     <ProjectReference Include="..\EasySupport.Infrastructure\EasySupport.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Notification\" />
+    <Folder Include="Validators\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>
