@@ -2,10 +2,10 @@
 {
     public class TicketInteraction
     {
-        public TicketInteraction(int ticketId,int userId,string message, DateTime createdAt)
+        public TicketInteraction(int ticketId,int attendantId, string message, DateTime createdAt)
         {
             TicketId = ticketId;
-            UserId = userId;
+            AttendantId = attendantId;
             Message = message;
             CreatedAt = DateTime.Now;
         }
@@ -13,8 +13,8 @@
         public int Id { get; private set; }
         public int TicketId { get; private set; }
         public Ticket Ticket { get; set; }
-        public int UserId { get; private set; }
-        public User User { get; set; }
+        public int AttendantId { get; private set; }
+        public User Attendant { get; set; }
         public string Message { get; private set; }
         public DateTime CreatedAt { get; private set; }
     }
