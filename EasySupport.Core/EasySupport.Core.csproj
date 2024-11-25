@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Emums\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 
