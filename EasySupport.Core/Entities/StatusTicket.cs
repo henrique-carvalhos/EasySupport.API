@@ -2,7 +2,7 @@
 {
     public class StatusTicket : BaseEntity
     {
-        public StatusTicket(string name)
+        public StatusTicket(string name) : base()
         {
             Name = name;
         }

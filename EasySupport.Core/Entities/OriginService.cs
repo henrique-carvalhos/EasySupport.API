@@ -2,7 +2,7 @@
 {
     public class OriginService : BaseEntity
     {
-        public OriginService(string name)
+        public OriginService(string name) : base()
         {
             Name = name;
         }

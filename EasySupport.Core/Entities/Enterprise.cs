@@ -2,7 +2,7 @@
 {
     public class Enterprise : BaseEntity
     {
-        public Enterprise(string name)
+        public Enterprise(string name) : base()
         {
             Name = name;
         }
