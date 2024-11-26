@@ -5,7 +5,7 @@
         public Category(string name) : base()
         {
             Name = name;
-            Subcategories = [];
+            Subcategories = new List<Subcategory>();
         }
 
         public string Name { get; private set; } // "Equipamento", "Programas", etc.
