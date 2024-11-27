@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EasySupport.Core.Entities;
-using EasySupport.Infrastructure.Persistence;
-using MediatR;
+﻿using Microsoft.AspNetCore.Mvc;
+Susing MediatR;
+using EasySupport.Application.Queries.GetCategoryById;
 
 namespace EasySupport.API.Controllers
 {
