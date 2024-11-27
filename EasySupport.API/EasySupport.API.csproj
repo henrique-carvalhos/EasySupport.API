@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EasySupport.Application\EasySupport.Application.csproj" />
     <ProjectReference Include="..\EasySupport.Core\EasySupport.Core.csproj" />
     <ProjectReference Include="..\EasySupport.Infrastructure\EasySupport.Infrastructure.csproj" />
