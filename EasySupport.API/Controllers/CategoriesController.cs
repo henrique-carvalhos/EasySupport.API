@@ -3,6 +3,7 @@ using MediatR;
 using EasySupport.Application.Queries.GetCategoryById;
 using EasySupport.Application.Commands.InsertCategory;
 using EasySupport.Application.Queries.GetAllCategory;
+using EasySupport.Application.Commands.UpdateCategory;
 
 namespace EasySupport.API.Controllers
 {
@@ -48,6 +49,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, UpdateCategoryCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
     }
 }
