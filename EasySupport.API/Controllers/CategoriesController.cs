@@ -4,6 +4,7 @@ using EasySupport.Application.Queries.GetCategoryById;
 using EasySupport.Application.Commands.InsertCategory;
 using EasySupport.Application.Queries.GetAllCategory;
 using EasySupport.Application.Commands.UpdateCategory;
+using EasySupport.Application.Commands.DeleteCategory;
 
 namespace EasySupport.API.Controllers
 {
