@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using EasySupport.Application.Queries.GetCategoryById;
+using EasySupport.Application.Commands.InsertCategory;
 
 namespace EasySupport.API.Controllers
 {
@@ -28,6 +29,14 @@ namespace EasySupport.API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertCategoryCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
         }
     }
 }

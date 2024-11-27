@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Notification\" />
     <Folder Include="Validators\" />
   </ItemGroup>
