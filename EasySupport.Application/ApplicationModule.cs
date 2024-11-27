@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasySupport.Application.Queries.GetCategoryById;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EasySupport.Application
 {
@@ -15,7 +16,8 @@ namespace EasySupport.Application
 
         public static IServiceCollection AddHandlers(this IServiceCollection services)
         {
-            //configurar MediatR
+            services.AddMediatR(config =>
+            config.RegisterServicesFromAssemblyContaining<GetCategoryByIdQuery>());
 
             return services;
         }
