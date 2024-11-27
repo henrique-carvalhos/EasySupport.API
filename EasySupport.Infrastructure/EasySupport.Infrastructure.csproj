@@ -19,8 +19,4 @@
     <ProjectReference Include="..\EasySupport.Core\EasySupport.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistence\Repositories\" />
-  </ItemGroup>
-
 </Project>
