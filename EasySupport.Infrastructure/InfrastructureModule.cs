@@ -1,4 +1,6 @@
-﻿using EasySupport.Infrastructure.Persistence;
+﻿using EasySupport.Core.Repositories;
+using EasySupport.Infrastructure.Persistence;
+using EasySupport.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +29,7 @@ namespace EasySupport.Infrastructure
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            //configurar injeção de dependencia das infertaces e seus respectivos repositórios
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             return services;
         }
