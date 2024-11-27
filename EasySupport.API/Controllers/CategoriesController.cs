@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-Susing MediatR;
+using MediatR;
 using EasySupport.Application.Queries.GetCategoryById;
 
 namespace EasySupport.API.Controllers
