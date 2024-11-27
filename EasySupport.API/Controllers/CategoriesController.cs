@@ -2,6 +2,7 @@
 using MediatR;
 using EasySupport.Application.Queries.GetCategoryById;
 using EasySupport.Application.Commands.InsertCategory;
+using EasySupport.Application.Queries.GetAllCategory;
 
 namespace EasySupport.API.Controllers
 {
@@ -14,6 +15,16 @@ namespace EasySupport.API.Controllers
         public CategoriesController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllCategoryQuery(search);
+
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
