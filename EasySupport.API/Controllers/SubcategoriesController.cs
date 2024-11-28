@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertSubcategories;
+using EasySupport.Application.Queries.GetAllSubcategories;
 using EasySupport.Application.Queries.GetSubcategoriesById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,16 @@ namespace EasySupport.API.Controllers
         public SubcategoriesController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllSubcategoriesQuery(search);
+
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
