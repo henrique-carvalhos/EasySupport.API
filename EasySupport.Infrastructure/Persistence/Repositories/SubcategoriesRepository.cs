@@ -25,6 +25,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
             var subcategories = await _context
                 .Subcategories
                 .Include(c => c.Category)
+                .Where(c => !c.IsDeleted &&(search == "" || c.Name.Contains(search)))
                 .ToListAsync();
 
             return subcategories;
@@ -35,6 +36,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
             return await _context
                 .Subcategories
                 .Include(c => c.Category)
+                .Where(c => !c.IsDeleted)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
