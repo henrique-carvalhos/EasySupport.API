@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Queries.GetSubcategoriesById;
+﻿using EasySupport.Application.Commands.InsertSubcategories;
+using EasySupport.Application.Queries.GetSubcategoriesById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,5 +29,14 @@ namespace EasySupport.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertSubcategoriesCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
     }
 }
