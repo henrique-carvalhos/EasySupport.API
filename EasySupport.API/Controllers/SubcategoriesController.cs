@@ -5,7 +5,6 @@ using EasySupport.Application.Queries.GetAllSubcategories;
 using EasySupport.Application.Queries.GetSubcategoriesById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace EasySupport.API.Controllers
 {
