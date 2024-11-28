@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EasySupport.Application.Models;
+using MediatR;
 
 namespace EasySupport.Application.Queries.GetSubcategoriesById
 {
-    public class GetSubcategoriesByIdQuery : 
+    public class GetSubcategoriesByIdQuery : IRequest<ResultViewModel<SubcategoriesViewModel>>
     {
+        public GetSubcategoriesByIdQuery(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; set; }
     }
 }

@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EasySupport.Application.Models;
+using EasySupport.Core.Repositories;
+using MediatR;
 
 namespace EasySupport.Application.Queries.GetSubcategoriesById
 {
-    internal class GetSubcategoriesByIdQueryHandler
+    public class GetSubcategoriesByIdQueryHandler : IRequestHandler<GetSubcategoriesByIdQuery, ResultViewModel<SubcategoriesViewModel>>
     {
+        private readonly ISubcategoriesRepository _repository;
+        public GetSubcategoriesByIdQueryHandler(ISubcategoriesRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<ResultViewModel<SubcategoriesViewModel>> Handle(GetSubcategoriesByIdQuery request, CancellationToken cancellationToken)
+        {
+            var subcategory = await _repository.GetByIdAsync(request.Id);
+
+            if(subcategory is null)
+            {
+                return ResultViewModel<SubcategoriesViewModel>.Error("Subcategoria não encontrado");
+            }
+
+            var model = SubcategoriesViewModel.FromEntity(subcategory);
+
+            return new ResultViewModel<SubcategoriesViewModel>(model);
+        }
     }
 }

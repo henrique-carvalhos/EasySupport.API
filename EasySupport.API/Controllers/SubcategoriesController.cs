@@ -1,4 +1,4 @@
-﻿using EasySupport.Application.Queries.GetCategoryById;
+﻿using EasySupport.Application.Queries.GetSubcategoriesById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
