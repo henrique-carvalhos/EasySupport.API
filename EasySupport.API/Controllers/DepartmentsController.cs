@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EasySupport.Application.Queries.GetDepartmentById;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -13,6 +14,19 @@ namespace EasySupport.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var query = new GetDepartmentByIdQuery(id);
 
+            var result = await _mediator.Send(query);
+
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }
