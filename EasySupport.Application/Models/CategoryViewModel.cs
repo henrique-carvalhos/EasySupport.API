@@ -9,19 +9,15 @@ namespace EasySupport.Application.Models
             Id = id;
             Name = name;
             IsDeleted = isDeleted;
-            Subcategories = new List<Subcategory>();
+            Subcategories = subcategories.Select(s => new SubcategoriesViewModel(s.Id, s.Name, s.IsDeleted, s.Category.Id, s.Category.Name)).ToList() ;
         }
 
         public int Id { get; private set; }
         public string Name { get; private set; }
         public bool IsDeleted { get; private set; }
-        public List<Subcategory> Subcategories { get; private set; }
+        public List<SubcategoriesViewModel> Subcategories { get; private set; }
 
         public static CategoryViewModel FromEntity(Category category)
-        {
-            var subcategories = category.Subcategories.ToList();
-
-            return new CategoryViewModel(category.Id, category.Name, category.IsDeleted, subcategories);
-        }
+            => new (category.Id, category.Name, category.IsDeleted, category.Subcategories);
     }
 }

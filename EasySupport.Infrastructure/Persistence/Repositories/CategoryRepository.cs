@@ -24,6 +24,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
         {
             var category = await _context
                 .Categories
+                .Include(s => s.Subcategories)
                 .ToListAsync();
 
             return category;
@@ -33,6 +34,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
         {
             return await _context
                 .Categories
+                .Include(s => s.Subcategories)
                 .SingleOrDefaultAsync(c => c.Id == id);
         }
 
