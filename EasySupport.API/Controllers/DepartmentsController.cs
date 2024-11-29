@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertDepartment;
+using EasySupport.Application.Commands.UpdateDepartment;
 using EasySupport.Application.Queries.GetAllDepartment;
 using EasySupport.Application.Queries.GetDepartmentById;
 using MediatR;
@@ -19,11 +20,11 @@ namespace EasySupport.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll(string search = "")
         {
-            var query = new GetAllDepartmentQuery(search);  
+            var query = new GetAllDepartmentQuery(search);
 
             var result = await _mediator.Send(query);
 
-            return Ok(result);  
+            return Ok(result);
         }
 
 
@@ -48,6 +49,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, UpdateDepartmentCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
     }
 }
