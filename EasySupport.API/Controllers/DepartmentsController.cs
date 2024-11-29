@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertDepartment;
+﻿using EasySupport.Application.Commands.DeleteDepartment;
+using EasySupport.Application.Commands.InsertDepartment;
 using EasySupport.Application.Commands.UpdateDepartment;
 using EasySupport.Application.Queries.GetAllDepartment;
 using EasySupport.Application.Queries.GetDepartmentById;
@@ -49,6 +50,20 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteDepartmentCommand(id));
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
+
         }
 
         [HttpPut]
