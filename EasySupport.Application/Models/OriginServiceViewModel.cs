@@ -15,7 +15,7 @@ namespace EasySupport.Application.Models
         public string Name { get; private set; }
         public bool IsDeleted { get; private set; }
 
-        public static OriginServiceViewModel FromEntity(Enterprise enterprise)
-            => new(enterprise.Id, enterprise.Name, enterprise.IsDeleted);
+        public static OriginServiceViewModel FromEntity(OriginService originService)
+            => new(originService.Id, originService.Name, originService.IsDeleted);
     }
 }
