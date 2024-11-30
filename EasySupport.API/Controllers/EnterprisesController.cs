@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertEnterprise;
+using EasySupport.Application.Commands.UpdateEnterprise;
 using EasySupport.Application.Queries.GetAllEnterprise;
 using EasySupport.Application.Queries.GetEntreprise;
 using MediatR;
@@ -47,6 +48,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new {id = result.Data}, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, UpdateEnterpriseCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
     }
 }
