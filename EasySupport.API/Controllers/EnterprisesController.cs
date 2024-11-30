@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertEnterprise;
+using EasySupport.Application.Queries.GetAllEnterprise;
 using EasySupport.Application.Queries.GetEntreprise;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,16 @@ namespace EasySupport.API.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllEnterpriseQuery(search);
+
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }
