@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertEnterprise;
+﻿using EasySupport.Application.Commands.DeleteEnterprise;
+using EasySupport.Application.Commands.InsertEnterprise;
 using EasySupport.Application.Commands.UpdateEnterprise;
 using EasySupport.Application.Queries.GetAllEnterprise;
 using EasySupport.Application.Queries.GetEntreprise;
@@ -48,6 +49,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new {id = result.Data}, command);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteEnterpriseCommand(id));
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
 
         [HttpPut]

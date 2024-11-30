@@ -36,7 +36,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
             return await _context
                 .Enterprises
                 .Where(s => !s.IsDeleted)
-                .SingleAsync(x => x.Id == id);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(Enterprise enterprise)
