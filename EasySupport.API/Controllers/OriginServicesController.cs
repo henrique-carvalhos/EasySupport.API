@@ -22,9 +22,9 @@ namespace EasySupport.API.Controllers
 
             var result = await _mediator.Send(query);
 
-            if (result.IsSuccess)
+            if (result is null)
             {
-                return BadRequest(result.Message);
+                return NotFound();
             }
 
             return Ok(result);
