@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Queries.GetOriginServiceById;
+﻿using EasySupport.Application.Commands.InsertOriginService;
+using EasySupport.Application.Queries.GetOriginServiceById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,14 @@ namespace EasySupport.API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertOriginServiceCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
         }
     }
 }
