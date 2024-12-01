@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertOriginService;
+﻿using EasySupport.Application.Commands.DeleteOriginService;
+using EasySupport.Application.Commands.InsertOriginService;
 using EasySupport.Application.Commands.UpdateOriginService;
 using EasySupport.Application.Queries.GetAllOriginService;
 using EasySupport.Application.Queries.GetOriginServiceById;
@@ -48,6 +49,20 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteOriginServiceCommand(id));
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
+
         }
 
         [HttpPut]
