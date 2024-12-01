@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertStatusTicket;
+using EasySupport.Application.Queries.GetAllStatusTicket;
 using EasySupport.Application.Queries.GetStatusTicketById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,16 @@ namespace EasySupport.API.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllStatusTicketQuery(search);
+
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }
