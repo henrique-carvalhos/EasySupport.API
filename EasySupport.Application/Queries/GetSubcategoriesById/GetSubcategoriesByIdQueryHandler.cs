@@ -23,7 +23,7 @@ namespace EasySupport.Application.Queries.GetSubcategoriesById
 
             var model = SubcategoriesViewModel.FromEntity(subcategory);
 
-            return new ResultViewModel<SubcategoriesViewModel>(model);
+            return ResultViewModel<SubcategoriesViewModel>.Success(model);
         }
     }
 }
