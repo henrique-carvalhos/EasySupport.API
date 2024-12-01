@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertOriginService;
+using EasySupport.Application.Queries.GetAllOriginService;
 using EasySupport.Application.Queries.GetOriginServiceById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,16 @@ namespace EasySupport.API.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllOriginServiceQuery(search);
+
+            var result = await _mediator.Send(query);
 
             return Ok(result);
         }
