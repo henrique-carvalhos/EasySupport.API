@@ -40,7 +40,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(StatusTicket status)
         {
-            _context.Update(status);
+            _context.StatusTickets.Update(status);
             await _context.SaveChangesAsync();
         }
     }
