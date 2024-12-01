@@ -42,7 +42,6 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(Category category)
         {
-            category.Update(category.Name);
             _context.Categories.Update(category);
             await _context.SaveChangesAsync();
         }
