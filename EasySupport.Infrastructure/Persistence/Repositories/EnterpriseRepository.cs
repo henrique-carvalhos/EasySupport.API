@@ -41,7 +41,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(Enterprise enterprise)
         {
-            _context.Update(enterprise);
+            _context.Enterprises.Update(enterprise);
             await _context.SaveChangesAsync();
         }
     }
