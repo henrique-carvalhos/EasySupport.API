@@ -40,7 +40,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
 
         public async Task UpdateAsync(OriginService originService)
         {
-            _context.Update(originService);
+            _context.OriginServices.Update(originService);
             await _context.SaveChangesAsync();
         }
     }
