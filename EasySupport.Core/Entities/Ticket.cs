@@ -24,7 +24,7 @@ namespace EasySupport.Core.Entities
         public Category Category { get; set; }
         public Subcategory Subcategory { get; set; }
         public StatusTicket StatusTicket { get; set; }
-        public User Client { get; set; }
+        public User Client { get; set; }//Adicionar uma para o Operador do tipo user, se basear no devfreala da nova versão
         public List<TicketInteraction> Interactions { get; set; }
     }
 }
