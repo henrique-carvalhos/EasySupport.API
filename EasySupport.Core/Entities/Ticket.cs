@@ -5,6 +5,7 @@ namespace EasySupport.Core.Entities
     public class Ticket : BaseEntity
     {
         public Ticket(int clientId, int categoryId, int subcategoryId, int statusTicketId, Priority priority, string description)
+            : base()
         {
             ClientId = clientId;
             CategoryId = categoryId;
