@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertTicket;
+﻿using EasySupport.Application.Commands.DeleteTicket;
+using EasySupport.Application.Commands.InsertTicket;
 using EasySupport.Application.Commands.UpdateTicket;
 using EasySupport.Application.Queries.GetAllTicket;
 using EasySupport.Application.Queries.GetTicketById;
@@ -48,6 +49,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteTicketCommand(id));
+
+            if (!result.IsSuccess)
+            {
+                return NotFound(result.Message);
+            }
+
+            return Ok();
         }
 
         [HttpPut]
