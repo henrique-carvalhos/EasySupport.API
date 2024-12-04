@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Queries.GetTicketById;
+﻿using EasySupport.Application.Commands.InsertTicket;
+using EasySupport.Application.Queries.GetTicketById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,14 @@ namespace EasySupport.API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertTicketCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
         }
     }
 }
