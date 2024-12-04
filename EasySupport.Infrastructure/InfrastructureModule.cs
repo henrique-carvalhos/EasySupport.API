@@ -35,6 +35,7 @@ namespace EasySupport.Infrastructure
             services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
             services.AddScoped<IOriginServicesRepository, OriginServicesRepository>();
             services.AddScoped<IStatusTicketRepository, StatusTicketRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
 
             return services;
         }
