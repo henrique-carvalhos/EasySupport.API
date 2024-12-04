@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertTicket;
+using EasySupport.Application.Queries.GetAllTicket;
 using EasySupport.Application.Queries.GetTicketById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,16 @@ namespace EasySupport.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search = "")
+        {
+            var query = new GetAllTicketQuery(search);
+
+            var result = await _mediator.Send(query);
+
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -22,7 +33,7 @@ namespace EasySupport.API.Controllers
 
             var result = await _mediator.Send(query);
 
-            if(result is null)
+            if (result is null)
             {
                 return NotFound();
             }
