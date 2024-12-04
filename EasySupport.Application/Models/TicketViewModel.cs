@@ -1,10 +1,4 @@
-﻿using EasySupport.Core.Emums;
-using EasySupport.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EasySupport.Core.Entities;
 
 namespace EasySupport.Application.Models
 {
@@ -24,7 +18,7 @@ namespace EasySupport.Application.Models
             NameStatusTicket = nameStatusTicket;
             Priority = priority;
             Description = description;
-            Interactions = new List<TicketInteraction>();//criar viewModel
+            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Message, i.CreatedAt)).ToList();
         }
 
         public int Id { get; private set; }
@@ -39,7 +33,7 @@ namespace EasySupport.Application.Models
         public string NameStatusTicket { get; private set; }
         public string Priority { get; private set; }
         public string Description { get; private set; }
-        public List<TicketInteraction> Interactions { get; private set; }
+        public List<TicketInteractionsViewModel> Interactions { get; private set; }
 
         public static TicketViewModel FromEntity(Ticket ticket)
         => new(
