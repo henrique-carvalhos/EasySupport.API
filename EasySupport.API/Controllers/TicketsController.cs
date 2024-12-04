@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertTicket;
+using EasySupport.Application.Commands.UpdateTicket;
 using EasySupport.Application.Queries.GetAllTicket;
 using EasySupport.Application.Queries.GetTicketById;
 using MediatR;
@@ -47,6 +48,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, UpdateTicketCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if(!result.IsSuccess)
+            {
+                return NotFound(result.Message);
+            }
+
+            return Ok();
         }
     }
 }

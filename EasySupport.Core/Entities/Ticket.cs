@@ -1,4 +1,5 @@
 ﻿using EasySupport.Core.Emums;
+using System.Data;
 
 namespace EasySupport.Core.Entities
 {
@@ -27,5 +28,15 @@ namespace EasySupport.Core.Entities
         public StatusTicket StatusTicket { get; set; }
         public User Client { get; set; }//Adicionar uma para o Operador do tipo user, se basear no devfreala da nova versão
         public List<TicketInteraction> Interactions { get; set; }
+
+
+        public void Update(int clientId, int categoryId, int subcategoryId, int statusTicketId, Priority priority)
+        {
+            ClientId = clientId;
+            CategoryId = categoryId;
+            SubcategoryId = subcategoryId;
+            StatusTicketId = statusTicketId;
+            Priority = priority;
+        }
     }
 }
