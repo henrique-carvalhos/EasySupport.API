@@ -31,5 +31,14 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
 
             return interactions;
         }
+
+        public async Task<TicketInteraction?> GetByIdAsync(int id)
+        {
+            return await _context
+                .TicketInteractions
+                .Include(u => u.Attendant)
+                .Include(t => t.Ticket)
+                .SingleOrDefaultAsync(t => t.Id == id);
+        }
     }
 }
