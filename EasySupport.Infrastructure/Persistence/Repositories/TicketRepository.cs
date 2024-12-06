@@ -24,11 +24,11 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
         {
             var tickets = await _context
                 .Tickets
-                .Include(i => i.Interactions)
                 .Include(c => c.Category)
                 .Include(s => s.Subcategory)
                 .Include(u => u.Client)
                 .Include(st => st.StatusTicket)
+                .Include(i => i.Interactions).ThenInclude(i => i.Attendant)
                 .Where(s => search == "" || s.Description.Contains(search) || s.Client.Name.Contains(search) || s.Client.Email.Contains(search))
                 .ToListAsync();
 
@@ -39,11 +39,11 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
         {
             return await _context
                 .Tickets
-                .Include(i => i.Interactions)
                 .Include(c => c.Category)
                 .Include(s => s.Subcategory)
                 .Include(u => u.Client)
                 .Include(st => st.StatusTicket)
+                .Include(i => i.Interactions).ThenInclude(i => i.Attendant)
                 .SingleOrDefaultAsync(i => i.Id == id);
         }
 
