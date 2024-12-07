@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertTicketInteraction;
+using EasySupport.Application.Queries.GetAllTicketInteraction;
 using EasySupport.Application.Queries.GetTicketInteractionById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,21 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(query);
 
             if(result is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll(int ticketId)
+        {
+            var query = new GetAllTicketInteractionQuery(ticketId);
+
+            var result = await _mediator.Send(query);
+
+            if (result is null)
             {
                 return NotFound();
             }
