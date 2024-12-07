@@ -25,6 +25,18 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .Property(x => x.Role)
                 .IsRequired()
                 .HasMaxLength(50);
+
+            builder
+                .HasOne(e => e.Enterprise)
+                .WithMany()
+                .HasForeignKey(e => e.EnterpriseId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .HasOne(d => d.Department)
+                .WithMany()
+                .HasForeignKey(d => d.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
