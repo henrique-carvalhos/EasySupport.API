@@ -1,5 +1,6 @@
 ﻿using EasySupport.Application.Commands.InsertDepartment;
 using EasySupport.Application.Commands.InsertSubcategories;
+using EasySupport.Application.Commands.InsertUser;
 using EasySupport.Application.Models;
 using EasySupport.Application.Queries.GetCategoryById;
 using FluentValidation;
@@ -34,6 +35,7 @@ namespace EasySupport.Application
                 .AddValidatorsFromAssemblyContaining<InsertDepartmentCommand>();
 
             services.AddTransient<IPipelineBehavior<InsertSubcategoriesCommand, ResultViewModel<int>>, ValidateInsertSubcategoryCommandBehavior>();
+            services.AddTransient<IPipelineBehavior<InsertUserCommand, ResultViewModel<int>>, ValidateInsertUserCommandBehavior>();
 
             return services;
         }
