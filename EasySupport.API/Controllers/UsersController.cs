@@ -1,4 +1,5 @@
 ﻿using EasySupport.Application.Commands.InsertUser;
+using EasySupport.Application.Commands.UpdateUser;
 using EasySupport.Application.Queries.GetAllUser;
 using EasySupport.Application.Queries.GetUserById;
 using MediatR;
@@ -47,6 +48,19 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(command);
 
             return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(int id, UpdateUserCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
     }
 }
