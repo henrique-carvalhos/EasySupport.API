@@ -1,7 +1,10 @@
 ﻿using EasySupport.Application.Commands.InsertDepartment;
+using EasySupport.Application.Commands.InsertSubcategories;
+using EasySupport.Application.Models;
 using EasySupport.Application.Queries.GetCategoryById;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasySupport.Application
@@ -30,7 +33,7 @@ namespace EasySupport.Application
             services.AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssemblyContaining<InsertDepartmentCommand>();
 
-            //Configurar IPipelineBehavior
+            services.AddTransient<IPipelineBehavior<InsertSubcategoriesCommand, ResultViewModel<int>>, ValidateInsertSubcategoryCommandBehavior>();
 
             return services;
         }
