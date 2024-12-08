@@ -48,7 +48,7 @@ namespace EasySupport.API.Controllers
         {
             var result = await _mediator.Send(command);
 
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }

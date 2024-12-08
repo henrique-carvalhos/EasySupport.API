@@ -1,5 +1,6 @@
 ﻿using EasySupport.Application.Commands.InsertDepartment;
 using EasySupport.Application.Commands.InsertSubcategories;
+using EasySupport.Application.Commands.InsertTicketInteraction;
 using EasySupport.Application.Commands.InsertUser;
 using EasySupport.Application.Models;
 using EasySupport.Application.Queries.GetCategoryById;
@@ -36,6 +37,7 @@ namespace EasySupport.Application
 
             services.AddTransient<IPipelineBehavior<InsertSubcategoriesCommand, ResultViewModel<int>>, ValidateInsertSubcategoryCommandBehavior>();
             services.AddTransient<IPipelineBehavior<InsertUserCommand, ResultViewModel<int>>, ValidateInsertUserCommandBehavior>();
+            services.AddTransient<IPipelineBehavior<InsertTicketInteractionCommand, ResultViewModel<int>>, ValidateInsertTicketInteractionCommandBehavior>();
 
             return services;
         }
