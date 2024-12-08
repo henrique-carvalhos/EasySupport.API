@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Queries.GetAllUser;
+﻿using EasySupport.Application.Commands.InsertUser;
+using EasySupport.Application.Queries.GetAllUser;
 using EasySupport.Application.Queries.GetUserById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,14 @@ namespace EasySupport.API.Controllers
             var result = await _mediator.Send(query);
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertUserCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
         }
     }
 }
