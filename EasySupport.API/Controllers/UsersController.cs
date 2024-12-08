@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertUser;
+﻿using EasySupport.Application.Commands.DeleteUser;
+using EasySupport.Application.Commands.InsertUser;
 using EasySupport.Application.Commands.UpdateUser;
 using EasySupport.Application.Queries.GetAllUser;
 using EasySupport.Application.Queries.GetUserById;
@@ -54,6 +55,19 @@ namespace EasySupport.API.Controllers
         public async Task<IActionResult> Put(int id, UpdateUserCommand command)
         {
             var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteUserCommand(id));
 
             if (!result.IsSuccess)
             {
