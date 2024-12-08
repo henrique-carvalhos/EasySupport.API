@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Notification\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>
