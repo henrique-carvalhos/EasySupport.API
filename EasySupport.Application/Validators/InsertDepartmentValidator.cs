@@ -3,15 +3,15 @@ using FluentValidation;
 
 namespace EasySupport.Application.Validators
 {
-    public class CreateDepartmentValidator : AbstractValidator<InsertDepartmentCommand>
+    public class InsertDepartmentValidator : AbstractValidator<InsertDepartmentCommand>
     {
-        public CreateDepartmentValidator()
+        public InsertDepartmentValidator()
         {
             RuleFor(d => d.Name)
                 .NotEmpty()
                 .WithMessage("Nome não pode ser vazio")
                 .MaximumLength(150)
-                .WithMessage("Tamanho máximo é de 50 caracteres");
+                .WithMessage("Tamanho máximo é de 150 caracteres");
 
         }
     }
