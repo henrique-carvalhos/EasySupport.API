@@ -1,4 +1,7 @@
-﻿using EasySupport.Application.Queries.GetCategoryById;
+﻿using EasySupport.Application.Commands.InsertDepartment;
+using EasySupport.Application.Queries.GetCategoryById;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EasySupport.Application
@@ -24,8 +27,8 @@ namespace EasySupport.Application
 
         public static IServiceCollection AddValidation(this IServiceCollection services)
         {
-
-            //configurar fluentValidation
+            services.AddFluentValidationAutoValidation()
+                .AddValidatorsFromAssemblyContaining<InsertDepartmentCommand>();
 
             //Configurar IPipelineBehavior
 
