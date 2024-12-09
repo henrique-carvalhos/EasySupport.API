@@ -9,15 +9,12 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="SendGrid.Extensions.DependencyInjection" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EasySupport.Core\EasySupport.Core.csproj" />
     <ProjectReference Include="..\EasySupport.Infrastructure\EasySupport.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Notification\" />
   </ItemGroup>
 
 </Project>
