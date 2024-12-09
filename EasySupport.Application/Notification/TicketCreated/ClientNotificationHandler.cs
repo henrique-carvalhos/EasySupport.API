@@ -18,11 +18,12 @@ namespace EasySupport.Application.Notification.TicketCreated
             {
                 From = new EmailAddress("xanol55376@ckuer.com", "EasySupport"),
                 Subject = $"Aberto: Ticket Nº: #{notification.Id}",
-                PlainTextContent = $"Ticket #{notification.Id} - Assunto: {notification.NameCategory} - {notification.NameSubcategory} \n" +
-                $"Status: {notification.NameStatusTicket}\n" +
-                $"Descrição: {notification.Description}\n" +
-                $"Prioridade: {notification.Priority}\n" +
-                $"Data criação: {notification.CreatedAt}"
+                HtmlContent = $@"
+                    <strong>Olá {notification.NameClient}, tudo bem?</strong><br>
+                    <hr>
+                    <strong>Ticket #{notification.Id} - Assunto: {notification.NameCategory} - {notification.NameSubcategory}</strong><br>
+                    <strong>Descrição:</strong> {notification.Description}<br>
+                    <strong>Data criação:</strong> {notification.CreatedAt}"
             };
 
             message.AddTo(notification.SenderEmail, notification.NameClient);
