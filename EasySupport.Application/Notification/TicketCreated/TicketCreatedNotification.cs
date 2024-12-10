@@ -6,8 +6,7 @@ namespace EasySupport.Application.Notification.TicketCreated
 {
     public class TicketCreatedNotification : INotification
     {
-        public TicketCreatedNotification(int id, DateTime createdAt,string nameClient,string senderEmail,string nameCategory, 
-            string nameSubcategory, string nameStatusTicket, string priority, string description)
+        public TicketCreatedNotification(int id, DateTime createdAt,string nameClient,string senderEmail,string nameCategory, string nameSubcategory, string description)
         {
             Id = id;
             CreatedAt = createdAt;
@@ -15,8 +14,6 @@ namespace EasySupport.Application.Notification.TicketCreated
             SenderEmail = senderEmail;
             NameCategory = nameCategory;
             NameSubcategory = nameSubcategory;
-            NameStatusTicket = nameStatusTicket;
-            Priority = priority;
             Description = description;
         }
 
@@ -26,8 +23,6 @@ namespace EasySupport.Application.Notification.TicketCreated
         public string SenderEmail { get; private set; }
         public string NameCategory { get; private set; }
         public string NameSubcategory { get; private set; }
-        public string NameStatusTicket { get; private set; }
-        public string Priority { get; private set; }
         public string Description { get; private set; }
     }
 }

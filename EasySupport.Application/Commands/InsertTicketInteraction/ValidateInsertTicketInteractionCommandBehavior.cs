@@ -18,7 +18,7 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
             var ticketExists = _context.Tickets.Any(t => t.Id == request.TicketId);
             var attendantExists = _context.Users.Any(t => t.Id == request.AttendantId);
 
-            if(!ticketExists || attendantExists)
+            if(!ticketExists || !attendantExists)
             {
                 return ResultViewModel<int>.Error("Ticket ou atendente são inválidos");
             }

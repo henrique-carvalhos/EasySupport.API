@@ -30,8 +30,6 @@ namespace EasySupport.Application.Commands.InsertTicket
                 ticketResult.Client.Email,
                 ticketResult.Category.Name, 
                 ticketResult.Subcategory.Name,
-                ticketResult.StatusTicket.Name,
-                ticketResult.Priority.ToString(),
                 ticketResult.Description);
 
             await _mediator.Publish(ticketCreated);

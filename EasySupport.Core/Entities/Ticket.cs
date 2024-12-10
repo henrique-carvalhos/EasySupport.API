@@ -1,5 +1,4 @@
 ﻿using EasySupport.Core.Emums;
-using System.Data;
 
 namespace EasySupport.Core.Entities
 {
