@@ -40,5 +40,10 @@ namespace EasySupport.Core.Entities
             StatusTicketId = statusTicketId;
             Priority = priority;
         }
+
+        public void AddAttendant(int attendantId)
+        {
+            AttendantId = attendantId;
+        }
     }
 }
