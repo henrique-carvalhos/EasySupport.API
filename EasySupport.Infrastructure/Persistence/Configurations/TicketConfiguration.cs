@@ -41,6 +41,12 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .HasForeignKey(u => u.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+                .HasOne(u => u.Attendant)
+                .WithMany()
+                .HasForeignKey(u => u.AttendantId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasMany(t => t.Interactions)
                .WithOne(t => t.Ticket)
                .HasForeignKey(t => t.TicketId)
