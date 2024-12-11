@@ -1,11 +1,13 @@
-﻿using MediatR;
+﻿using EasySupport.Application.Models;
+using EasySupport.Core.Entities;
+using MediatR;
 
 namespace EasySupport.Application.Notification.TicketInteractionCreated
 {
     public class TicketInteractionNotification : INotification
     {
-        public TicketInteractionNotification(int id, int ticketId, string description,string status, string nameCategory, string nameSubcategory, int attendantId, string attendantName, 
-            string attendantSendEmail, string clientName,string clientSendEmail,string message,string role, DateTime createdAt, DateTime ticketCreatedAt)
+        public TicketInteractionNotification(int id, int ticketId, string description, string status, string nameCategory, string nameSubcategory, int attendantId, string attendantName,
+            string attendantSendEmail, string clientName, string clientSendEmail, string message, string role, DateTime createdAt, DateTime ticketCreatedAt, List<TicketInteraction> interactions)
         {
             Id = id;
             TicketId = ticketId;
@@ -22,6 +24,8 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
             Role = role;
             CreatedAt = createdAt;
             TicketCreatedAt = ticketCreatedAt;
+            //Interactions = interactions;
+            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role,i.Message, i.CreatedAt)).OrderByDescending(i => i.CreatedAt).ToList();
         }
 
         public int Id { get; private set; }
@@ -39,5 +43,6 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
         public string Role { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime TicketCreatedAt { get; private set; }
+        public List<TicketInteractionsViewModel> Interactions { get; private set; }
     }
 }
