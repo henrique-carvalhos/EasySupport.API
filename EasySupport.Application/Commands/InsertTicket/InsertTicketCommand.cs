@@ -10,11 +10,12 @@ namespace EasySupport.Application.Commands.InsertTicket
         public int ClientId { get;  set; }
         public int CategoryId { get;  set; }
         public int SubcategoryId { get;  set; }
+        public int? AttendantId { get;  set; }
         public int StatusTicketId { get;  set; }
         public Priority Priority { get;  set; }
         public string Description { get; set; }
 
         public Ticket ToEntity()
-            => new(ClientId, CategoryId, SubcategoryId, StatusTicketId, Priority,Description);
+            => new(ClientId, AttendantId,CategoryId, SubcategoryId, StatusTicketId, Priority,Description);
     }
 }
