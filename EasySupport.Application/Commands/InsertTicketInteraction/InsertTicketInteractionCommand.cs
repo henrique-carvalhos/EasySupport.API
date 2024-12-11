@@ -12,6 +12,6 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
         public DateTime CreatedAt { get;  set; }
 
         public TicketInteraction ToEntity()
-            => new(TicketId, AttendantId, Message, CreatedAt);
+            => new(TicketId, AttendantId, Message);
     }
 }
