@@ -2,6 +2,7 @@
 using EasySupport.Application.Notification.TicketInteractionCreated;
 using EasySupport.Core.Repositories;
 using MediatR;
+using Microsoft.VisualBasic;
 
 namespace EasySupport.Application.Commands.InsertTicketInteraction
 {
@@ -24,6 +25,14 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
             await _repository.AddAsync(interaction);
 
             var ticketResult = await _ticketRepository.GetByIdAsync(interaction.TicketId);
+            //var interactionsTicket = await _repository.GetAllInteractionsAsync(interaction.TicketId);
+            //var model = interactionsTicket.Select(TicketInteractionsViewModel.FromEntity).ToList();
+
+            if (ticketResult != null && interaction.Attendant.Role == "Admin")
+            {
+                ticketResult.AddAttendant(interaction.AttendantId);
+                await _ticketRepository.UpdateAsync(ticketResult);
+            }
 
             var ticket = new TicketInteractionNotification(
                 interaction.Id,
@@ -32,15 +41,16 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
                 ticketResult.StatusTicket.Name,
                 ticketResult.Category.Name,
                 ticketResult.Subcategory.Name,
-                interaction.Attendant.Id,
-                interaction.Attendant.Name,
-                interaction.Attendant.Email,
+                ticketResult.Attendant.Id,
+                ticketResult.Attendant.Name,
+                ticketResult.Attendant.Email,
                 ticketResult.Client.Name,
                 ticketResult.Client.Email,
                 interaction.Message,
-                interaction.Attendant.Role,
+                ticketResult.Attendant.Role,
                 interaction.CreatedAt,
-                ticketResult.CreatedAt);
+                ticketResult.CreatedAt,
+                ticketResult.Interactions);
 
             await _mediator.Publish(ticket);
 
