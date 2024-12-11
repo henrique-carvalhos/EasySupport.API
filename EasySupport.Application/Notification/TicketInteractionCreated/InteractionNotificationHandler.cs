@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.VisualBasic;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -15,7 +14,18 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
 
         public async Task Handle(TicketInteractionNotification notification, CancellationToken cancellationToken)
         {
-            var role = notification.Role == "Admin" ? "Atendente" : "Solicitante";
+            var interactions = "";
+
+            foreach(var interation in notification.Interactions)
+            {
+                var role = interation.Role == "Admin" ? "Atendente" : "Solicitante";
+
+                interactions += $@"
+                    <strong>Interação:</strong> {interation.Message}<br>
+                    <strong>Data interação:</strong> {interation.CreatedAt}<br>
+                    <strong>{role}:</strong> {interation.AttendantName}<br>
+                    <hr>";
+            }
 
             var message = new SendGridMessage
             {
@@ -28,9 +38,7 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
                     <strong>Descrição:</strong> {notification.Description}<br><br>
                     <strong>Data criação:</strong> {notification.TicketCreatedAt}
                     <hr>
-                    <strong>Interação:</strong> {notification.Message}<br>
-                    <strong>Data interação:</strong> {notification.CreatedAt}<br>
-                    <strong>{role}:</strong> {notification.AttendantName}"
+                    {interactions}"
             };
 
             message.AddTo(notification.ClientSendEmail, notification.ClientName);
