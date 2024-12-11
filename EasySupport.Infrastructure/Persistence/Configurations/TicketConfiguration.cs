@@ -45,7 +45,7 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .HasOne(u => u.Attendant)
                 .WithMany()
                 .HasForeignKey(u => u.AttendantId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasMany(t => t.Interactions)
                .WithOne(t => t.Ticket)
