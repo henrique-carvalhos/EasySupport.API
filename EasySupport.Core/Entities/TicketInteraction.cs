@@ -2,7 +2,7 @@
 {
     public class TicketInteraction
     {
-        public TicketInteraction(int ticketId,int attendantId, string message, DateTime createdAt)
+        public TicketInteraction(int ticketId,int attendantId, string message)
         {
             TicketId = ticketId;
             AttendantId = attendantId;
