@@ -4,10 +4,11 @@ namespace EasySupport.Core.Entities
 {
     public class Ticket : BaseEntity
     {
-        public Ticket(int clientId, int categoryId, int subcategoryId, int statusTicketId, Priority priority, string description)
+        public Ticket(int clientId,int? attendantId ,int categoryId, int subcategoryId, int statusTicketId, Priority priority, string description)
             : base()
         {
             ClientId = clientId;
+            AttendantId = attendantId;
             CategoryId = categoryId;
             SubcategoryId = subcategoryId;
             StatusTicketId = statusTicketId;
@@ -17,7 +18,7 @@ namespace EasySupport.Core.Entities
         }
 
         public int ClientId { get; private set; }
-        public int AttendantId { get; private set; }
+        public int? AttendantId { get; private set; }
         public int CategoryId { get; private set; }
         public int SubcategoryId { get; private set; }
         public int StatusTicketId { get; private set; }
