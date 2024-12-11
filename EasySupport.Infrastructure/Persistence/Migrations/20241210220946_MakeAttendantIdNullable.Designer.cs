@@ -4,6 +4,7 @@ using EasySupport.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasySupport.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(EasySupportDbContext))]
-    partial class EasySupportDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241210220946_MakeAttendantIdNullable")]
+    partial class MakeAttendantIdNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
