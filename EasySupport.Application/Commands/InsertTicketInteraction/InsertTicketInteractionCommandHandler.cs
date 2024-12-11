@@ -2,7 +2,6 @@
 using EasySupport.Application.Notification.TicketInteractionCreated;
 using EasySupport.Core.Repositories;
 using MediatR;
-using Microsoft.VisualBasic;
 
 namespace EasySupport.Application.Commands.InsertTicketInteraction
 {
