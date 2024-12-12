@@ -17,10 +17,11 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
         {
             var ticketExists = _context.Tickets.Any(t => t.Id == request.TicketId);
             var attendantExists = _context.Users.Any(t => t.Id == request.AttendantId);
+            var statusTicketExists = _context.StatusTickets.Any(t => t.Id == request.StatusTicketId);
 
-            if(!ticketExists || !attendantExists)
+            if(!ticketExists || !attendantExists || !statusTicketExists)
             {
-                return ResultViewModel<int>.Error("Ticket ou atendente são inválidos");
+                return ResultViewModel<int>.Error("Alguns desses parâmetros são inválidos: StatusTicket, Ticket ou atendente.");
             }
 
             return await next();
