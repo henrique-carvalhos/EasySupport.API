@@ -45,5 +45,10 @@ namespace EasySupport.Core.Entities
         {
             AttendantId = attendantId;
         }
+
+        public void UpdateStatus(int statusTicketId)
+        {
+            StatusTicketId = statusTicketId;
+        }
     }
 }
