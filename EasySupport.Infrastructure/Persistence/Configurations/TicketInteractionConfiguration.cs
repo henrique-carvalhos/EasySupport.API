@@ -27,6 +27,12 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .WithMany()
                 .HasForeignKey(t => t.AttendantId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .HasOne(st => st.StatusTicket)
+                .WithMany()
+                .HasForeignKey(st => st.StatusTicktId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
