@@ -6,7 +6,7 @@
         {
             TicketId = ticketId;
             AttendantId = attendantId;
-            StatusTicktId = statusTicketId;
+            StatusTicketId = statusTicketId;
             Message = message;
             CreatedAt = DateTime.Now;
         }
@@ -16,7 +16,7 @@
         public Ticket Ticket { get; set; }
         public int AttendantId { get; private set; }
         public User Attendant { get; set; }
-        public int StatusTicktId { get; private set; }
+        public int StatusTicketId { get; private set; }
         public StatusTicket StatusTicket { get; set; }
         public string Message { get; private set; }
         public DateTime CreatedAt { get; private set; }
