@@ -31,7 +31,7 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
             builder
                 .HasOne(st => st.StatusTicket)
                 .WithMany()
-                .HasForeignKey(st => st.StatusTicktId)
+                .HasForeignKey(st => st.StatusTicketId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
