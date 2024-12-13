@@ -20,6 +20,7 @@ namespace EasySupport.Infrastructure.Persistence
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TicketInteraction> TicketInteractions { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<SolutionTicket> SolutionTickets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
