@@ -53,6 +53,12 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .HasForeignKey(u => u.AttendantId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            builder
+                .HasOne(s => s.SolutionTicket)
+                .WithMany()
+                .HasForeignKey(s => s.SolutionTicketId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             builder.HasMany(t => t.Interactions)
                .WithOne(t => t.Ticket)
                .HasForeignKey(t => t.TicketId)
