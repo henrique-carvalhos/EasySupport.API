@@ -30,6 +30,7 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
             if (ticketResult != null && interaction.Attendant.Role == "Admin")
             {
                 ticketResult.AddAttendant(interaction.AttendantId);
+                ticketResult.UpdateStatus(interaction.StatusTicketId);
                 await _ticketRepository.UpdateAsync(ticketResult);
             }
 
