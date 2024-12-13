@@ -10,6 +10,7 @@ namespace EasySupport.Application.Commands.UpdateTicket
         public int ClientId { get; set; }
         public int CategoryId { get; set; }
         public int SubcategoryId { get; set; }
+        public int OriginServiceId { get; set; }
         public int StatusTicketId { get; set; }
         public Priority Priority { get; set; }
     }

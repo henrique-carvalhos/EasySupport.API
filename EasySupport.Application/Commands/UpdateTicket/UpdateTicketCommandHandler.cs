@@ -21,7 +21,7 @@ namespace EasySupport.Application.Commands.UpdateTicket
                 return ResultViewModel.Error("Ticket não encontrado");
             }
 
-            ticket.Update(request.ClientId, request.CategoryId, request.SubcategoryId, request.StatusTicketId, request.Priority);
+            ticket.Update(request.ClientId, request.CategoryId, request.SubcategoryId, request.StatusTicketId, request.OriginServiceId, request.Priority);
             await _repository.UpdateAsync(ticket);
 
             return ResultViewModel.Success();
