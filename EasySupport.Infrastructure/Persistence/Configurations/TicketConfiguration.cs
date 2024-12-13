@@ -42,6 +42,12 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
+                .HasOne(o => o.OriginService)
+                .WithMany()
+                .HasForeignKey(o => o.OriginServiceId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
                 .HasOne(u => u.Attendant)
                 .WithMany()
                 .HasForeignKey(u => u.AttendantId)
