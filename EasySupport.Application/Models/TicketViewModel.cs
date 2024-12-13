@@ -18,7 +18,7 @@ namespace EasySupport.Application.Models
             NameStatusTicket = nameStatusTicket;
             Priority = priority;
             Description = description;
-            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role, i.Message, i.CreatedAt)).ToList();
+            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role, i.Message, i.StatusTicket.Name, i.CreatedAt)).ToList();
         }
 
         public int Id { get; private set; }
