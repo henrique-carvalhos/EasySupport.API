@@ -4,7 +4,7 @@ namespace EasySupport.Core.Entities
 {
     public class Ticket : BaseEntity
     {
-        public Ticket(int clientId,int? attendantId ,int categoryId, int subcategoryId, int statusTicketId, Priority priority, string description)
+        public Ticket(int clientId, int? attendantId, int categoryId, int subcategoryId, int statusTicketId, int originServiceId, Priority priority, string description)
             : base()
         {
             ClientId = clientId;
@@ -12,32 +12,36 @@ namespace EasySupport.Core.Entities
             CategoryId = categoryId;
             SubcategoryId = subcategoryId;
             StatusTicketId = statusTicketId;
+            OriginServiceId = originServiceId;
             Priority = priority;
             Description = description;
             Interactions = new List<TicketInteraction>();
         }
 
         public int ClientId { get; private set; }
+        public User Client { get; set; }
         public int? AttendantId { get; private set; }
+        public User Attendant { get; set; }
         public int CategoryId { get; private set; }
+        public Category Category { get; set; }
         public int SubcategoryId { get; private set; }
+        public Subcategory Subcategory { get; set; }
         public int StatusTicketId { get; private set; }
+        public StatusTicket StatusTicket { get; set; }
+        public int OriginServiceId { get; private set; }
+        public OriginService OriginService { get; set; }
         public Priority Priority { get; private set; }
         public string Description { get; private set; }
-        public Category Category { get; set; }
-        public Subcategory Subcategory { get; set; }
-        public StatusTicket StatusTicket { get; set; }
-        public User Client { get; set; }
-        public User Attendant { get; set; }
         public List<TicketInteraction> Interactions { get; set; }
 
 
-        public void Update(int clientId, int categoryId, int subcategoryId, int statusTicketId, Priority priority)
+        public void Update(int clientId, int categoryId, int subcategoryId, int statusTicketId, int originService, Priority priority)
         {
             ClientId = clientId;
             CategoryId = categoryId;
             SubcategoryId = subcategoryId;
             StatusTicketId = statusTicketId;
+            OriginServiceId = originService;
             Priority = priority;
         }
 
