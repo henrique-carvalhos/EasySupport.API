@@ -26,6 +26,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
                 .TicketInteractions
                 .Include(u => u.Attendant)
                 .Include(t => t.Ticket)
+                .Include(s => s.StatusTicket)
                 .Where(t => t.Ticket.Id == ticketId)
                 .ToListAsync();
 
@@ -38,6 +39,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
                 .TicketInteractions
                 .Include(u => u.Attendant)
                 .Include(t => t.Ticket)
+                .Include(s => s.StatusTicket)
                 .SingleOrDefaultAsync(t => t.Id == id);
         }
     }
