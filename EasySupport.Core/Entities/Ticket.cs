@@ -4,7 +4,7 @@ namespace EasySupport.Core.Entities
 {
     public class Ticket : BaseEntity
     {
-        public Ticket(int clientId, int? attendantId, int categoryId, int subcategoryId, int statusTicketId, int originServiceId, Priority priority, string description)
+        public Ticket(int clientId, int? attendantId, int categoryId, int subcategoryId, int statusTicketId, int originServiceId, int? solutionTicketId,Priority priority, string description)
             : base()
         {
             ClientId = clientId;
@@ -13,6 +13,7 @@ namespace EasySupport.Core.Entities
             SubcategoryId = subcategoryId;
             StatusTicketId = statusTicketId;
             OriginServiceId = originServiceId;
+            SolutionTicketId = solutionTicketId;
             Priority = priority;
             Description = description;
             Interactions = new List<TicketInteraction>();
@@ -30,6 +31,8 @@ namespace EasySupport.Core.Entities
         public StatusTicket StatusTicket { get; set; }
         public int OriginServiceId { get; private set; }
         public OriginService OriginService { get; set; }
+        public int? SolutionTicketId { get; private set; }
+        public SolutionTicket SolutionTicket { get; set; }
         public Priority Priority { get; private set; }
         public string Description { get; private set; }
         public List<TicketInteraction> Interactions { get; set; }
@@ -53,6 +56,11 @@ namespace EasySupport.Core.Entities
         public void UpdateStatus(int statusTicketId)
         {
             StatusTicketId = statusTicketId;
+        }
+
+        public void UpdateSolution(int solutionTicketId)
+        {
+            SolutionTicketId = solutionTicketId;
         }
     }
 }
