@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Commands.InsertSolutionTicket;
+﻿using EasySupport.Application.Commands.DeleteSolutionTicket;
+using EasySupport.Application.Commands.InsertSolutionTicket;
 using EasySupport.Application.Commands.UpdateSolutionTicket;
 using EasySupport.Application.Queries.GetAllSolutionTicket;
 using EasySupport.Application.Queries.GetSolutionTicketById;
@@ -54,6 +55,19 @@ namespace EasySupport.API.Controllers
         public async Task<IActionResult> Put(int id, UpdateSolutionTicketCommand command)
         {
             var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeleteSolutionTicketCommand(id));
 
             if (!result.IsSuccess)
             {
