@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using EasySupport.Application.Queries.GetSolutionTicketById;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -11,6 +12,20 @@ namespace EasySupport.API.Controllers
         public SolutionTicketsController(IMediator mediator )
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var query = new GetSolutionTicketByIdQuery(id);
+            var result = await _mediator.Send(query);
+
+            if (result is null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(result);
         }
     }
 }
