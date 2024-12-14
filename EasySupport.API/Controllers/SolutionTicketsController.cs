@@ -1,4 +1,5 @@
-﻿using EasySupport.Application.Queries.GetSolutionTicketById;
+﻿using EasySupport.Application.Commands.InsertSolutionTicket;
+using EasySupport.Application.Queries.GetSolutionTicketById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace EasySupport.API.Controllers
     public class SolutionTicketsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public SolutionTicketsController(IMediator mediator )
+        public SolutionTicketsController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -26,6 +27,14 @@ namespace EasySupport.API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(InsertSolutionTicketCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, command);
         }
     }
 }
