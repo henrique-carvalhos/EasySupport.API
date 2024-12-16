@@ -4,7 +4,7 @@ namespace EasySupport.Application.Models
 {
     public class TicketViewModel
     {
-        public TicketViewModel(int id, bool isDeleted, int clientId, string nameClient, int categoryId, string nameCategory, int subcategoryId, string nameSubcategory, int statusTicketId, string nameStatusTicket,string originServiceName, string priority, string description, List<TicketInteraction> interactions)
+        public TicketViewModel(int id, bool isDeleted, int clientId, string nameClient, int categoryId, string nameCategory, int subcategoryId, string nameSubcategory, int statusTicketId, string nameStatusTicket,string originServiceName,int solutionTicketId, string solution ,string priority, string description, List<TicketInteraction> interactions)
         {
             Id = id;
             IsDeleted = isDeleted;
@@ -17,6 +17,8 @@ namespace EasySupport.Application.Models
             StatusTicketId = statusTicketId;
             NameStatusTicket = nameStatusTicket;
             OriginServiceName = originServiceName;
+            SolutionTicketId = solutionTicketId;
+            Solution = solution;
             Priority = priority;
             Description = description;
             Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role, i.Message, i.StatusTicket.Name, i.CreatedAt)).ToList();
@@ -32,6 +34,8 @@ namespace EasySupport.Application.Models
         public string NameSubcategory { get; private set; }
         public int StatusTicketId { get; private set; }
         public string NameStatusTicket { get; private set; }
+        public int SolutionTicketId { get; private set; }
+        public string Solution { get; private set; }
         public string OriginServiceName { get; private set; }
         public string Priority { get; private set; }
         public string Description { get; private set; }
@@ -50,6 +54,8 @@ namespace EasySupport.Application.Models
             ticket.StatusTicket.Id,
             ticket.StatusTicket.Name,
             ticket.OriginService.Name,
+            ticket.SolutionTicket.Id,
+            ticket.SolutionTicket.Name,
             ticket.Priority.ToString(),
             ticket.Description,
             ticket.Interactions);
