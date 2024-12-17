@@ -19,11 +19,13 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
             foreach(var interation in notification.Interactions)
             {
                 var role = interation.Role == "Admin" ? "Atendente" : "Solicitante";
+                var resolvido = interation.StatusTicket.Contains("Resolvido") ? $"<strong>Ação:</strong> {interation.SolutionTicket}<br>" : "";
 
                 interactions += $@"
                     <strong>Interação:</strong> {interation.Message}<br>
                     <strong>Data interação:</strong> {interation.CreatedAt}<br>
                     <strong>{role}:</strong> {interation.AttendantName}<br>
+                    {resolvido}
                     <hr>";
             }
 
