@@ -25,7 +25,7 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
             CreatedAt = createdAt;
             TicketCreatedAt = ticketCreatedAt;
             //Interactions = interactions;
-            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role,i.Message, i.StatusTicket.Name, i.CreatedAt)).OrderByDescending(i => i.CreatedAt).ToList();
+            Interactions = interactions.Select(i => new TicketInteractionsViewModel(i.Id, i.Ticket.Id, i.Attendant.Id, i.Attendant.Name, i.Attendant.Role, i.Message, i.StatusTicket.Name, i.SolutionTicket.Name, i.CreatedAt)).OrderByDescending(i => i.CreatedAt).ToList();
         }
 
         public int Id { get; private set; }
