@@ -24,13 +24,18 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
             await _repository.AddAsync(interaction);
 
             var ticketResult = await _ticketRepository.GetByIdAsync(interaction.TicketId);
-            //var interactionsTicket = await _repository.GetAllInteractionsAsync(interaction.TicketId);
-            //var model = interactionsTicket.Select(TicketInteractionsViewModel.FromEntity).ToList();
 
             if (ticketResult != null && interaction.Attendant.Role == "Admin")
             {
                 ticketResult.AddAttendant(interaction.AttendantId);
                 ticketResult.UpdateStatus(interaction.StatusTicketId);
+
+
+                if (interaction.StatusTicket.Name.Contains("Resolvido"))
+                {
+                    ticketResult.UpdateSolution(interaction.SolutionTicketId ?? 0);
+                }
+
                 await _ticketRepository.UpdateAsync(ticketResult);
             }
 
