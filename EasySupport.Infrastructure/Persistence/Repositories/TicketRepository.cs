@@ -31,6 +31,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
                 .Include(o => o.OriginService)
                 .Include(i => i.Interactions).ThenInclude(i => i.Attendant)
                 .Include(i => i.Interactions).ThenInclude(i => i.StatusTicket)
+                .Include(i => i.Interactions).ThenInclude(i => i.SolutionTicket)
                 .Where(s => search == "" || s.Description.Contains(search) || s.Client.Name.Contains(search) || s.Client.Email.Contains(search))
                 .ToListAsync();
 
@@ -48,6 +49,7 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
                 .Include(o => o.OriginService)
                 .Include(i => i.Interactions).ThenInclude(i => i.Attendant)
                 .Include(i => i.Interactions).ThenInclude(i => i.StatusTicket)
+                .Include(i => i.Interactions).ThenInclude(i => i.SolutionTicket)
                 .SingleOrDefaultAsync(i => i.Id == id);
         }
 
