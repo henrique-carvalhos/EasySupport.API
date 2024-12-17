@@ -4,7 +4,7 @@ namespace EasySupport.Application.Models
 {
     public class TicketInteractionsViewModel
     {
-        public TicketInteractionsViewModel(int id, int ticketId, int attendantId, string attendantName, string role, string message, string statusTicket, DateTime createdAt)
+        public TicketInteractionsViewModel(int id, int ticketId, int attendantId, string attendantName, string role, string message, string statusTicket, string solutionTicket, DateTime createdAt)
         {
             Id = id;
             TicketId = ticketId;
@@ -13,6 +13,7 @@ namespace EasySupport.Application.Models
             Role = role;
             Message = message;
             StatusTicket = statusTicket;
+            SolutionTicket = solutionTicket;
             CreatedAt = createdAt;
         }
 
@@ -23,10 +24,11 @@ namespace EasySupport.Application.Models
         public string Role { get; set; }
         public string Message { get; private set; }
         public string StatusTicket { get; set; }
+        public string SolutionTicket { get; private set; }
         public DateTime CreatedAt { get; private set; }
 
         public static TicketInteractionsViewModel FromEntity(TicketInteraction interaction)
-            => new(interaction.Id, interaction.Ticket.Id, interaction.Attendant.Id, interaction.Attendant.Name, interaction.Attendant.Role, interaction.Message, interaction.StatusTicket.Name, interaction.CreatedAt);
+            => new(interaction.Id, interaction.Ticket.Id, interaction.Attendant.Id, interaction.Attendant.Name, interaction.Attendant.Role, interaction.Message, interaction.StatusTicket.Name, interaction.SolutionTicket.Name, interaction.CreatedAt);
 
     }
 }
