@@ -52,6 +52,7 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
                 ticketResult.Client.Name,
                 ticketResult.Client.Email,
                 interaction.Message,
+                ticketResult.SolutionTicket.Name,
                 ticketResult.Attendant.Role,
                 interaction.CreatedAt,
                 ticketResult.CreatedAt,
