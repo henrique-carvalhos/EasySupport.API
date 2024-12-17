@@ -9,10 +9,11 @@ namespace EasySupport.Application.Commands.InsertTicketInteraction
         public int TicketId { get;  set; }
         public int AttendantId { get;  set; }
         public int StatusTicketId { get; set; }
+        public int SolutionTicketId { get; set; }
         public string Message { get;  set; }
         public DateTime CreatedAt { get;  set; }
 
         public TicketInteraction ToEntity()
-            => new(TicketId, AttendantId, StatusTicketId,Message);
+            => new(TicketId, AttendantId, StatusTicketId,SolutionTicketId,Message);
     }
 }
