@@ -7,7 +7,7 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
     public class TicketInteractionNotification : INotification
     {
         public TicketInteractionNotification(int id, int ticketId, string description, string status, string nameCategory, string nameSubcategory, int attendantId, string attendantName,
-            string attendantSendEmail, string clientName, string clientSendEmail, string message, string role, DateTime createdAt, DateTime ticketCreatedAt, List<TicketInteraction> interactions)
+            string attendantSendEmail, string clientName, string clientSendEmail, string message, string role,string solutionTicketName ,DateTime createdAt, DateTime ticketCreatedAt, List<TicketInteraction> interactions)
         {
             Id = id;
             TicketId = ticketId;
@@ -21,6 +21,7 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
             ClientName = clientName;
             ClientSendEmail = clientSendEmail;
             Message = message;
+            SolutionTicketName = solutionTicketName;
             Role = role;
             CreatedAt = createdAt;
             TicketCreatedAt = ticketCreatedAt;
@@ -41,6 +42,7 @@ namespace EasySupport.Application.Notification.TicketInteractionCreated
         public string ClientSendEmail { get; private set; }
         public string Message { get; private set; }
         public string Role { get; private set; }
+        public string? SolutionTicketName { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime TicketCreatedAt { get; private set; }
         public List<TicketInteractionsViewModel> Interactions { get; private set; }
