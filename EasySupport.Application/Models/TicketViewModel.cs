@@ -54,8 +54,8 @@ namespace EasySupport.Application.Models
             ticket.StatusTicket.Id,
             ticket.StatusTicket.Name,
             ticket.OriginService.Name,
-            ticket.SolutionTicket.Id,
-            ticket.SolutionTicket.Name,
+            ticket.SolutionTicket?.Id ?? 0,
+            ticket.SolutionTicket?.Name ?? "N/A",
             ticket.Priority.ToString(),
             ticket.Description,
             ticket.Interactions);
