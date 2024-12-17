@@ -13,7 +13,7 @@ namespace EasySupport.Application.Commands.InsertTicket
         public int? AttendantId { get; set; }
         public int StatusTicketId { get; set; }
         public int OriginServiceId { get; set; }
-        public int SolutionTicketId { get; set; }
+        public int? SolutionTicketId { get; set; }
         public Priority Priority { get; set; }
         public string Description { get; set; }
 
