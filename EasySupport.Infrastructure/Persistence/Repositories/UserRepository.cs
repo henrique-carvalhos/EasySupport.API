@@ -41,6 +41,13 @@ namespace EasySupport.Infrastructure.Persistence.Repositories
                 .SingleOrDefaultAsync(u => u.Id == id);
         }
 
+        public async Task<User> GetUserByEmailAndPasswordAsync(string email, string passwordHash)
+        {
+            return await _context
+                .Users
+                .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
+        }
+
         public async Task UpdateAsync(User user)
         {
             _context.Update(user);
