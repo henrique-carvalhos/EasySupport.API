@@ -8,5 +8,6 @@ namespace EasySupport.Core.Repositories
         Task<List<User>> GetAllAsync(string search);
         Task<int> AddAsync(User user);
         Task UpdateAsync(User user);
+        Task<User> GetUserByEmailAndPasswordAsync(string email, string passwordHash);
     }
 }
