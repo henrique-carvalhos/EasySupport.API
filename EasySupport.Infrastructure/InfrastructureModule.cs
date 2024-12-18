@@ -1,4 +1,6 @@
 ﻿using EasySupport.Core.Repositories;
+using EasySupport.Core.Services;
+using EasySupport.Infrastructure.Auth;
 using EasySupport.Infrastructure.Persistence;
 using EasySupport.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +15,7 @@ namespace EasySupport.Infrastructure
         {
             services
                 .AddRepositories()
+                .AddAuth()
                 .AddData(configuration);
 
             return services;
@@ -39,6 +42,13 @@ namespace EasySupport.Infrastructure
             services.AddScoped<ITicketInteractionRepository, TicketInteractionRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISolutionTicketRepository, SolutionTicketRepository>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddAuth(this IServiceCollection services)
+        {
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }
