@@ -1,5 +1,6 @@
 ﻿using EasySupport.Application.Commands.DeleteUser;
 using EasySupport.Application.Commands.InsertUser;
+using EasySupport.Application.Commands.LoginUser;
 using EasySupport.Application.Commands.UpdateUser;
 using EasySupport.Application.Queries.GetAllUser;
 using EasySupport.Application.Queries.GetUserById;
@@ -80,6 +81,19 @@ namespace EasySupport.API.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPut("login")]
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result);
         }
     }
 }
