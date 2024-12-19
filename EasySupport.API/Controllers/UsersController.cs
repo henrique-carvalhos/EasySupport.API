@@ -5,12 +5,14 @@ using EasySupport.Application.Commands.UpdateUser;
 using EasySupport.Application.Queries.GetAllUser;
 using EasySupport.Application.Queries.GetUserById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,6 +22,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetUserByIdQuery(id);
@@ -35,6 +38,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllUserQuery(search);
@@ -45,6 +49,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post(InsertUserCommand command)
         {
             var result = await _mediator.Send(command);
@@ -58,6 +63,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateUserCommand command)
         {
             var result = await _mediator.Send(command);
@@ -71,6 +77,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteUserCommand(id));
@@ -84,6 +91,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
             var result = await _mediator.Send(command);
