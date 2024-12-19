@@ -4,6 +4,7 @@ using EasySupport.Application.Commands.UpdateOriginService;
 using EasySupport.Application.Queries.GetAllOriginService;
 using EasySupport.Application.Queries.GetOriginServiceById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -19,6 +20,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetOriginServiceByIdQuery(id);
@@ -34,6 +36,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllOriginServiceQuery(search);
@@ -44,6 +47,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(InsertOriginServiceCommand command)
         {
             var result = await _mediator.Send(command);
@@ -52,6 +56,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteOriginServiceCommand(id));
@@ -66,6 +71,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateOriginServiceCommand command)
         {
             var result = await _mediator.Send(command);
