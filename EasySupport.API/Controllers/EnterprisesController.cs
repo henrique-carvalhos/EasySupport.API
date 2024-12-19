@@ -4,12 +4,14 @@ using EasySupport.Application.Commands.UpdateEnterprise;
 using EasySupport.Application.Queries.GetAllEnterprise;
 using EasySupport.Application.Queries.GetEntreprise;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
 {
     [Route("api/enterprises")]
     [ApiController]
+    [Authorize]
     public class EnterprisesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,6 +21,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetEntrepriseByIdQuery(id);
@@ -34,6 +37,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllEnterpriseQuery(search);
@@ -44,6 +48,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(InsertEnterpriseCommand command)
         {
             var result = await _mediator.Send(command);
@@ -52,6 +57,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteEnterpriseCommand(id));
@@ -65,6 +71,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateEnterpriseCommand command)
         {
             var result = await _mediator.Send(command);
