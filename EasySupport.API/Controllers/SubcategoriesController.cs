@@ -4,6 +4,7 @@ using EasySupport.Application.Commands.UpdateSubcategories;
 using EasySupport.Application.Queries.GetAllSubcategories;
 using EasySupport.Application.Queries.GetSubcategoriesById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -19,6 +20,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllSubcategoriesQuery(search);
@@ -29,6 +31,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetSubcategoriesByIdQuery(id);
@@ -44,6 +47,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(InsertSubcategoriesCommand command)
         {
             var result = await _mediator.Send(command);
@@ -57,6 +61,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteSubcategoriesCommand(id));
@@ -71,6 +76,7 @@ namespace EasySupport.API.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateSubcategoriesCommand command)
         {
             var result = await _mediator.Send(command);
