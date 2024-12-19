@@ -11,7 +11,6 @@ namespace EasySupport.API.Controllers
 {
     [Route("api/enterprises")]
     [ApiController]
-    [Authorize]
     public class EnterprisesController : ControllerBase
     {
         private readonly IMediator _mediator;

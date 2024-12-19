@@ -20,7 +20,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Client")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetOriginServiceByIdQuery(id);
@@ -36,7 +36,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Client")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllOriginServiceQuery(search);
