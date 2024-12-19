@@ -5,6 +5,7 @@ using EasySupport.Application.Commands.InsertCategory;
 using EasySupport.Application.Queries.GetAllCategory;
 using EasySupport.Application.Commands.UpdateCategory;
 using EasySupport.Application.Commands.DeleteCategory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasySupport.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllCategoryQuery(search);
@@ -30,6 +32,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetCategoryByIdQuery(id);
@@ -45,6 +48,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(InsertCategoryCommand command)
         {
             var result = await _mediator.Send(command);
@@ -53,6 +57,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteCategoryCommand(id));
@@ -66,6 +71,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateCategoryCommand command)
         {
             var result = await _mediator.Send(command);
