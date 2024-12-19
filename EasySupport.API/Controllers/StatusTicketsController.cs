@@ -4,6 +4,7 @@ using EasySupport.Application.Commands.UpdateStatusTicket;
 using EasySupport.Application.Queries.GetAllStatusTicket;
 using EasySupport.Application.Queries.GetStatusTicketById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -19,6 +20,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetStatusTicketByIdQuery(id);
@@ -34,6 +36,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllStatusTicketQuery(search);
@@ -44,6 +47,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(InsertStatusTicketCommand command)
         {
             var result = await _mediator.Send(command);
@@ -52,6 +56,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteStatusTicketCommand(id));
@@ -65,6 +70,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, UpdateStatusTicketCommand command)
         {
             var result = await _mediator.Send(command);
