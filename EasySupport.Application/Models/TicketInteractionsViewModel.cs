@@ -28,7 +28,7 @@ namespace EasySupport.Application.Models
         public DateTime CreatedAt { get; private set; }
 
         public static TicketInteractionsViewModel FromEntity(TicketInteraction interaction)
-            => new(interaction.Id, interaction.Ticket.Id, interaction.Attendant.Id, interaction.Attendant.Name, interaction.Attendant.Role, interaction.Message, interaction.StatusTicket.Name, interaction.SolutionTicket.Name, interaction.CreatedAt);
+            => new(interaction.Id, interaction.Ticket.Id, interaction.Attendant.Id, interaction.Attendant.Name, interaction.Attendant.Role, interaction.Message, interaction.StatusTicket.Name, interaction.SolutionTicket?.Name ?? "N/A", interaction.CreatedAt);
 
     }
 }
