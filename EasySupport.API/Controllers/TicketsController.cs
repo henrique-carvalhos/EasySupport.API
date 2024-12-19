@@ -4,12 +4,14 @@ using EasySupport.Application.Commands.UpdateTicket;
 using EasySupport.Application.Queries.GetAllTicket;
 using EasySupport.Application.Queries.GetTicketById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
 {
     [Route("api/tickets")]
     [ApiController]
+    
     public class TicketsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,6 +21,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(string search = "")
         {
             var query = new GetAllTicketQuery(search);
@@ -29,6 +32,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetTicketByIdQuery(id);
@@ -44,6 +48,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> Post(InsertTicketCommand command)
         {
             var result = await _mediator.Send(command);
@@ -57,6 +62,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteTicketCommand(id));
@@ -70,6 +76,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")] 
         public async Task<IActionResult> Put(int id, UpdateTicketCommand command)
         {
             var result = await _mediator.Send(command);
