@@ -2,6 +2,7 @@
 using EasySupport.Application.Queries.GetAllTicketInteraction;
 using EasySupport.Application.Queries.GetTicketInteractionById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasySupport.API.Controllers
@@ -17,6 +18,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetTicketInteractionByIdQuery(id);
@@ -32,6 +34,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> GetAll(int ticketId)
         {
             var query = new GetAllTicketInteractionQuery(ticketId);
@@ -47,6 +50,7 @@ namespace EasySupport.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Client")]
         public async Task<IActionResult> Post(InsertTicketInteractionCommand command)
         {
             var result = await _mediator.Send(command);
