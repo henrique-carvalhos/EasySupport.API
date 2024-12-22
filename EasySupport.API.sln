@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySupport.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySupport.Infrastructure", "EasySupport.Infrastructure\EasySupport.Infrastructure.csproj", "{5888C015-09E8-4FFB-9FE2-06D7F93DF527}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySupport.UnitTests", "EasySupport.UnitTests\EasySupport.UnitTests.csproj", "{F6DDAE33-B73D-4B0C-838C-9663190667E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5888C015-09E8-4FFB-9FE2-06D7F93DF527}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5888C015-09E8-4FFB-9FE2-06D7F93DF527}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5888C015-09E8-4FFB-9FE2-06D7F93DF527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6DDAE33-B73D-4B0C-838C-9663190667E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6DDAE33-B73D-4B0C-838C-9663190667E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6DDAE33-B73D-4B0C-838C-9663190667E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6DDAE33-B73D-4B0C-838C-9663190667E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
