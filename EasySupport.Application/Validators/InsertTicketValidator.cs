@@ -9,9 +9,7 @@ namespace EasySupport.Application.Validators
         {
             RuleFor(t => t.Description)
                 .NotEmpty()
-                .WithMessage("Descrição não pode ser vazio")
-                .MaximumLength(255)
-                .WithMessage("Tamanho máximo é de 255 caracteres");
+                .WithMessage("Descrição não pode ser vazio");
         }
     }
 }
