@@ -13,9 +13,7 @@ namespace EasySupport.Infrastructure.Persistence.Configurations
 
             builder
                 .Property(x => x.Description)
-                .IsRequired()
-                .HasMaxLength(255);
-
+                .IsRequired();
 
             builder
                 .HasOne(c => c.Category)
