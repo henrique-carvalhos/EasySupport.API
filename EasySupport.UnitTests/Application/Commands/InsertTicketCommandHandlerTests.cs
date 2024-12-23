@@ -2,7 +2,7 @@
 using EasySupport.Core.Emums;
 using EasySupport.Core.Entities;
 using EasySupport.Core.Repositories;
-using MediatR;
+using EasySupport.Core.Services;
 using Moq;
 
 namespace EasySupport.UnitTests.Application.Commands
@@ -14,7 +14,7 @@ namespace EasySupport.UnitTests.Application.Commands
         {
             // Arrange
             var ticketRepositoryMock = new Mock<ITicketRepository>();
-            var mediatorMock = new Mock<IMediator>();
+            var notificationMock = new Mock<INotificationService>();
 
             var insertTicketCommand = new InsertTicketCommand
             {
@@ -29,7 +29,7 @@ namespace EasySupport.UnitTests.Application.Commands
                 Description = "Teste de criação de ticket"
             };
 
-            var insertTicketCommandHandler = new InsertTicketCommandHandler(ticketRepositoryMock.Object, mediatorMock.Object);
+            var insertTicketCommandHandler = new InsertTicketCommandHandler(ticketRepositoryMock.Object, notificationMock.Object);
 
             // Act
             var id = await insertTicketCommandHandler.Handle(insertTicketCommand, new CancellationToken());
