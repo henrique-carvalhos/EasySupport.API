@@ -1,6 +1,6 @@
 ﻿using EasySupport.Application.Models;
-using EasySupport.Application.Notification.TicketCreated;
 using EasySupport.Core.Repositories;
+using EasySupport.Core.Services;
 using MediatR;
 
 namespace EasySupport.Application.Commands.InsertTicket
@@ -8,11 +8,11 @@ namespace EasySupport.Application.Commands.InsertTicket
     public class InsertTicketCommandHandler : IRequestHandler<InsertTicketCommand, ResultViewModel<int>>
     {
         private readonly ITicketRepository _repository;
-        private readonly IMediator _mediator;
-        public InsertTicketCommandHandler(ITicketRepository repository, IMediator mediator)
+        private readonly INotificationService _notificationService;
+        public InsertTicketCommandHandler(ITicketRepository repository, INotificationService notificationService)
         {
             _repository = repository;
-            _mediator = mediator;
+            _notificationService = notificationService;
         }
 
         public async Task<ResultViewModel<int>> Handle(InsertTicketCommand request, CancellationToken cancellationToken)
@@ -23,16 +23,10 @@ namespace EasySupport.Application.Commands.InsertTicket
 
             var ticketResult = await _repository.GetByIdAsync(ticket.Id);
 
-            var ticketCreated = new TicketCreatedNotification(
-                ticketResult.Id,
-                ticketResult.CreatedAt,
-                ticketResult.Client.Name, 
-                ticketResult.Client.Email,
-                ticketResult.Category.Name, 
-                ticketResult.Subcategory.Name,
-                ticketResult.Description);
-
-            await _mediator.Publish(ticketCreated);
+            if (ticketResult != null)
+            {
+                await _notificationService.NotifyTicketCreated(ticketResult);
+            }
 
             return ResultViewModel<int>.Success(ticket.Id);
         }
