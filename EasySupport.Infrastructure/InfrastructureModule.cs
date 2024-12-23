@@ -1,8 +1,10 @@
 ﻿using EasySupport.Core.Repositories;
 using EasySupport.Core.Services;
 using EasySupport.Infrastructure.Auth;
+using EasySupport.Infrastructure.Notifications.TicketCreated;
 using EasySupport.Infrastructure.Persistence;
 using EasySupport.Infrastructure.Persistence.Repositories;
+using EasySupport.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,7 @@ namespace EasySupport.Infrastructure
             services
                 .AddRepositories()
                 .AddAuth()
+                .AddNotification()
                 .AddData(configuration);
 
             return services;
@@ -49,6 +52,16 @@ namespace EasySupport.Infrastructure
         private static IServiceCollection AddAuth(this IServiceCollection services)
         {
             services.AddScoped<IAuthService, AuthService>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddNotification(this IServiceCollection services)
+        {
+            services.AddMediatR(config =>
+            config.RegisterServicesFromAssemblyContaining<ClientNotificationHandler>());
+
+            services.AddScoped<INotificationService, NotificationService>();
 
             return services;
         }
